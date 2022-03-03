@@ -1,8 +1,7 @@
 class TextConstant {
   static TextConstant? _instace;
   static TextConstant get instance {
-    _instace ??= TextConstant._init();
-    return _instace!;
+    return _instace ??= TextConstant._init();
   }
 
   TextConstant._init();

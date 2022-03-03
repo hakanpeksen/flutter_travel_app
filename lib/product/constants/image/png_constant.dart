@@ -1,8 +1,7 @@
 class PngConstant {
   static PngConstant? _instace;
   static PngConstant get instance {
-    _instace ??= PngConstant._init();
-    return _instace!;
+    return _instace ??= PngConstant._init();
   }
 
   PngConstant._init();

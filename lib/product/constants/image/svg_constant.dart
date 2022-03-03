@@ -1,8 +1,7 @@
 class SvgImageConstant {
   static SvgImageConstant? _instace;
   static SvgImageConstant get instance {
-    _instace ??= SvgImageConstant._init();
-    return _instace!;
+    return _instace ??= SvgImageConstant._init();
   }
 
   SvgImageConstant._init();
