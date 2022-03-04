@@ -7,4 +7,5 @@ class CustomPadding extends EdgeInsets {
   const CustomPadding.mediumHorizontal() : super.symmetric(horizontal: 20);
 
   const CustomPadding.mediumTop() : super.only(top: 20);
+  const CustomPadding.onlyLTRB() : super.only(top: 50.0, left: 30, right: 30, bottom: 0);
 }

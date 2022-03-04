@@ -22,53 +22,56 @@ class HomeView extends StatelessWidget {
 
   Scaffold _buildScaffoldView(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const CustomPadding.normalHorizontal(), // horizontal: 30
+        resizeToAvoidBottomInset: false,
+        body: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: context.dynamicHeight(0.06)),
-              _buildHeaderRow(context),
-              SizedBox(height: context.mediumValue),
-              _buildTextRich(context),
-              SizedBox(height: context.mediumValue), // height * 0.04;
-              _buildContainerInput(context),
-              SizedBox(height: context.dynamicHeight(0.08)),
-              _buildTextSaved(context),
-              _buildGridViewSizedBox(context),
-              SizedBox(height: context.dynamicHeight(0.03)),
-              _buildTextTravel(context),
-              SizedBox(height: context.dynamicHeight(0.02)),
-              buildBottomRow(context),
+              // Header, SearchInput
+              buildDecorationContainer(context),
+              Padding(
+                padding: const CustomPadding.normalHorizontal(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: context.dynamicHeight(0.04)),
+                    // Saved Places
+                    _buildTextSaved(context),
+                    _buildGridViewSizedBox(context),
+                    SizedBox(height: context.dynamicHeight(0.03)),
+                    // Travel Buddies
+                    _buildTextTravel(context),
+                    SizedBox(height: context.dynamicHeight(0.02)),
+                    _buildBottomRow(context),
+                  ],
+                ),
+              ),
             ],
           ),
-        ),
+        ));
+  }
+
+  Container buildDecorationContainer(BuildContext context) {
+    return Container(
+        height: context.dynamicHeight(0.44),
+        decoration: CustomDecoration.onlyLeftAndRight(context),
+        child: buildPadding(context));
+  }
+
+  Padding buildPadding(BuildContext context) {
+    return Padding(
+      padding: const CustomPadding.onlyLTRB(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildHeaderRow(context),
+          SizedBox(height: context.mediumValue),
+          _buildTextRich(context),
+          SizedBox(height: context.mediumValue), // height * 0.04;
+          _buildContainerInput(context),
+          SizedBox(height: context.mediumValue),
+        ],
       ),
     );
-  }
-
-  Row buildBottomRow(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Container(
-            width: context.highValue, //  height * 0.1;
-            height: context.highValue,
-            child: Image.asset(PngConstant.instance.add),
-            decoration: CustomDecoration(context)),
-        Image.asset(PngConstant.instance.ashok),
-        Image.asset(PngConstant.instance.jack),
-      ],
-    );
-  }
-
-  Container _buildContainerInput(BuildContext context) {
-    return Container(
-        decoration: BoxDecoration(boxShadow: [TextShadowCustom(context)]),
-        child: SearchInputField(data: Theme.of(context)));
   }
 
   SizedBox _buildGridViewSizedBox(BuildContext context) {

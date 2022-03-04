@@ -1,4 +1,17 @@
-enum Sizes { zero, four, five, six, eight, ten, twelwe, fourTeen, sixTeen, extraCircle, buttonSize }
+enum Sizes {
+  zero,
+  four,
+  five,
+  six,
+  eight,
+  ten,
+  twelwe,
+  fourTeen,
+  sixTeen,
+  twenty,
+  extraCircle,
+  buttonSize
+}
 
 extension SizesExtension on Sizes {
   double rawValue() {
@@ -21,6 +34,8 @@ extension SizesExtension on Sizes {
         return 14;
       case Sizes.sixTeen:
         return 16;
+      case Sizes.twenty:
+        return 20;
       case Sizes.buttonSize:
         return 30;
       case Sizes.extraCircle:
