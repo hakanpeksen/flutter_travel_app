@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:travel_app/view/onboard.dart';
 
 import 'product/init/app/app_init.dart';
 import 'product/init/theme/theme_manager.dart';
 import 'view/splash/splash_context.dart';
-import 'view/splash/splash_view.dart';
 
 Future<void> main() async {
   await AppInitiliaze().initBeforeAppStart();
@@ -22,6 +22,6 @@ class MyApp extends StatelessWidget {
             title: 'Material App',
             debugShowCheckedModeBanner: false,
             theme: AppThemeLight.instance.themeDataLight,
-            home: const SplashView()));
+            home: const OnboardView()));
   }
 }
