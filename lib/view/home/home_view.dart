@@ -22,35 +22,38 @@ class HomeView extends StatelessWidget {
 
   Scaffold _buildScaffoldView(BuildContext context) {
     return Scaffold(
-        // resizeToAvoidBottomInset: false,
-        body: ListView(
-      children: [
-        // Header, SearchInput
-        buildDecorationContainer(context),
-        Padding(
-          padding: const CustomPadding.normalHorizontal(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: context.dynamicHeight(0.04)),
-              // Saved Places
-              _buildTextSaved(context),
-              _buildGridViewSizedBox(context),
-              SizedBox(height: context.dynamicHeight(0.03)),
-              // Travel Buddies
-              _buildTextTravel(context),
-              SizedBox(height: context.dynamicHeight(0.02)),
-              _buildBottomRow(context),
-            ],
+        //resizeToAvoidBottomInset: false,
+        body: SafeArea(
+      bottom: false,
+      child: ListView(
+        children: [
+          // Header, SearchInput
+          buildDecorationContainer(context),
+          Padding(
+            padding: const CustomPadding.normalHorizontal(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: context.dynamicHeight(0.03)),
+                // Saved Places
+                _buildTextSaved(context),
+                _buildGridViewSizedBox(context),
+                // SizedBox(height: context.dynamicHeight(0.02)),
+                // Travel Buddies
+                _buildTextTravel(context),
+                SizedBox(height: context.dynamicHeight(0.02)),
+                _buildBottomRow(context),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     ));
   }
 
   Container buildDecorationContainer(BuildContext context) {
     return Container(
-        height: context.dynamicHeight(0.44),
+        height: context.dynamicHeight(0.32),
         decoration: CustomDecoration.onlyLeftAndRight(context),
         child: buildPadding(context));
   }
@@ -59,14 +62,16 @@ class HomeView extends StatelessWidget {
     return Padding(
       padding: const CustomPadding.onlyLTRB(),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildHeaderRow(context),
           SizedBox(height: context.mediumValue),
           _buildTextRich(context),
+          //SizedBox(height: context.mediumValue),
           SizedBox(height: context.mediumValue), // height * 0.04;
           _buildContainerInput(context),
-          SizedBox(height: context.mediumValue),
+          // SizedBox(height: context.lowValue),
         ],
       ),
     );
@@ -74,7 +79,7 @@ class HomeView extends StatelessWidget {
 
   SizedBox _buildGridViewSizedBox(BuildContext context) {
     return SizedBox(
-      height: context.dynamicHeight(0.37),
+      height: context.dynamicHeight(0.33),
       child: GridView.count(
         padding: const CustomPadding.mediumTop(), // super.only(top: 20);
         childAspectRatio: 1.490,
