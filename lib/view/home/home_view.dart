@@ -22,32 +22,30 @@ class HomeView extends StatelessWidget {
 
   Scaffold _buildScaffoldView(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: SingleChildScrollView(
+        // resizeToAvoidBottomInset: false,
+        body: ListView(
+      children: [
+        // Header, SearchInput
+        buildDecorationContainer(context),
+        Padding(
+          padding: const CustomPadding.normalHorizontal(),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header, SearchInput
-              buildDecorationContainer(context),
-              Padding(
-                padding: const CustomPadding.normalHorizontal(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: context.dynamicHeight(0.04)),
-                    // Saved Places
-                    _buildTextSaved(context),
-                    _buildGridViewSizedBox(context),
-                    SizedBox(height: context.dynamicHeight(0.03)),
-                    // Travel Buddies
-                    _buildTextTravel(context),
-                    SizedBox(height: context.dynamicHeight(0.02)),
-                    _buildBottomRow(context),
-                  ],
-                ),
-              ),
+              SizedBox(height: context.dynamicHeight(0.04)),
+              // Saved Places
+              _buildTextSaved(context),
+              _buildGridViewSizedBox(context),
+              SizedBox(height: context.dynamicHeight(0.03)),
+              // Travel Buddies
+              _buildTextTravel(context),
+              SizedBox(height: context.dynamicHeight(0.02)),
+              _buildBottomRow(context),
             ],
           ),
-        ));
+        ),
+      ],
+    ));
   }
 
   Container buildDecorationContainer(BuildContext context) {
