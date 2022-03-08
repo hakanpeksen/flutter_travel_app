@@ -15,5 +15,7 @@ class TextConstant {
   final String savedText = 'Saved Places';
   final String travelText = 'Travel Buddies';
 
+  final String startedButtonText = 'Get Started';
+
   final hintText = 'Search';
 }

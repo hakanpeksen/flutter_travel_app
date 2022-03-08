@@ -1,58 +1,75 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:provider/provider.dart';
 
-import '../../product/constants/app_constant.dart';
-import '../../product/constants/image/svg_constant.dart';
 import '../../product/constants/text/text_constant.dart';
-import '../../product/widgets/build_positioned.dart';
+import '../../product/init/shared_manager.dart';
 import '../../product/widgets/custom_textrich.dart';
+import '../../product/widgets/splash_image.dart';
 import '../../product/widgets/tab_indicator.dart';
+import '../home/home_view.dart';
+import 'splash_context.dart';
 
-part 'splash_part_view.dart';
+part './splash_part_view.dart';
 
-class SplashView extends StatelessWidget {
+class SplashView extends StatefulWidget {
   const SplashView({Key? key}) : super(key: key);
 
   @override
+  State<SplashView> createState() => _SplashViewState();
+}
+
+class _SplashViewState extends State<SplashView> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _buildStackView(context),
+        body: Column(
+      children: [Expanded(child: buildPageView())],
+    ));
+  }
+
+  PageView buildPageView() {
+    final model = context.read<SplashContext>();
+
+    return PageView.builder(
+      onPageChanged: (value) {
+        model.incrementSelectedPage(value);
+      },
+      itemCount: SplashModels.splashItems.length,
+      itemBuilder: (context, index) {
+        return Stack(children: [
+          Center(
+              child: Column(children: [
+            SizedBox(height: context.dynamicHeight(0.09)),
+            _buildTextRich(context),
+            SizedBox(height: context.lowValue), // height * 0.01;
+            _descriptionText(context),
+            SizedBox(height: context.lowValue),
+            buildTabSelector()
+          ])),
+          SplashImage(model: SplashModels.splashItems[index]),
+          buidlElevatedButtonSelector(),
+        ]);
+      },
     );
   }
 
-  Stack _buildStackView(BuildContext context) {
-    return Stack(fit: StackFit.expand, children: [
-      buildHeaderColumn(context),
-      BuilPositionedWidget(top: 10, right: 10, assetName: SvgImageConstant.instance.airplane),
-      BuilPositionedWidget(top: 10, right: kZero, assetName: SvgImageConstant.instance.cloud),
-      BuilPositionedWidget(
-          bottom: -130, right: kZero, left: kZero, assetName: SvgImageConstant.instance.building),
-      BuilPositionedWidget(
-          bottom: -30, right: kZero, left: kZero, assetName: SvgImageConstant.instance.grass),
-      BuilPositionedWidget(bottom: -40, assetName: SvgImageConstant.instance.girl)
-    ]);
+  Selector<SplashContext, int> buildTabSelector() {
+    return Selector<SplashContext, int>(selector: (context, _model) {
+      return _model.selectedIndex;
+    }, builder: (context, value, child) {
+      return TabIndicator(selectedIndex: value);
+    });
   }
 
-  Column buildHeaderColumn(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(height: context.dynamicHeight(0.09)),
-        _buildTextRich(context),
-        SizedBox(height: context.lowValue), // height * 0.01;
-        _descriptionText(context),
-        SizedBox(height: context.lowValue),
-        const TabIndicator(),
-      ],
-    );
-  }
-
-  CustomTextRich _buildTextRich(BuildContext context) {
-    return CustomTextRich(
-      textSpan1: TextConstant.instance.headerText1,
-      textSpan1Style: _headerText1Style(context),
-      textSpan2: TextConstant.instance.headerText2,
-      textSpan2Style: _headerText2Style(context),
-      textAlign: TextAlign.center,
+  Selector<SplashContext, bool> buidlElevatedButtonSelector() {
+    return Selector<SplashContext, bool>(
+      selector: (context, model) {
+        return model.isLastPage;
+      },
+      builder: (context, value, child) {
+        return value ? Center(child: buildElevatedButton(context)) : const SizedBox();
+      },
     );
   }
 }
