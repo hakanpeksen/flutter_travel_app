@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'app_color.dart';
-import 'text_style.dart';
 
 const String fontFamily = 'GTWalsheimPro';
 
@@ -15,14 +14,7 @@ class AppThemeLight {
 
   ThemeData get themeDataLight => ThemeData(
         brightness: Brightness.light,
-        textTheme: ThemeData.light()
-            .textTheme
-            .copyWith(
-              headline4: AppTextStyles.headline4,
-              headline6: AppTextStyles.headline6,
-            )
-            .apply(fontFamily: fontFamily),
-        //textTheme: ThemeData.light().textTheme.apply(fontFamily: fontFamily),
+        fontFamily: fontFamily,
         colorScheme: ThemeData.light().colorScheme.copyWith(
               primary: AppColors.emperor,
               onPrimary: AppColors.black,
