@@ -7,10 +7,8 @@ class SplashContext extends ChangeNotifier {
 
   bool get isLastPage => selectedIndex == SplashModels.splashItems.length - 1;
 
-  void incrementSelectedPage([int? value]) {
-    if (value != null) {
-      selectedIndex = value;
-    }
+  void incrementSelectedPage(int value) {
+    selectedIndex = value;
     notifyListeners();
   }
 }

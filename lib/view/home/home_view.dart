@@ -4,6 +4,7 @@ import 'package:kartal/kartal.dart';
 import '../../product/constants/app_constant.dart';
 import '../../product/constants/image/png_constant.dart';
 import '../../product/constants/text/text_constant.dart';
+import '../../product/init/theme/text_style.dart';
 import '../../product/widgets/custom_textrich.dart';
 import '../../product/widgets/decoration/custom_decoration.dart';
 import '../../product/widgets/input/input_field.dart';
@@ -35,11 +36,11 @@ class HomeView extends StatelessWidget {
                   children: [
                     SizedBox(height: context.dynamicHeight(0.04)),
                     // Saved Places
-                    _buildTextSaved(context),
+                    _buildTextSaved,
                     _buildGridViewSizedBox(context),
                     SizedBox(height: context.dynamicHeight(0.03)),
                     // Travel Buddies
-                    _buildTextTravel(context),
+                    _buildTextTravel,
                     SizedBox(height: context.dynamicHeight(0.02)),
                     _buildBottomRow(context),
                   ],

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:travel_app/view/onboard.dart';
 
 import 'product/init/app/app_init.dart';
 import 'product/init/theme/theme_manager.dart';
+import 'view/onboard.dart';
 import 'view/splash/splash_context.dart';
 
 Future<void> main() async {

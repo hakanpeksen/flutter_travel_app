@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../product/constants/text/text_constant.dart';
 import '../../product/init/shared_manager.dart';
+import '../../product/init/theme/text_style.dart';
 import '../../product/widgets/custom_textrich.dart';
 import '../../product/widgets/splash_image.dart';
 import '../../product/widgets/tab_indicator.dart';
@@ -41,7 +42,7 @@ class _SplashViewState extends State<SplashView> {
           Center(
               child: Column(children: [
             SizedBox(height: context.dynamicHeight(0.09)),
-            _buildTextRich(context),
+            _buildTextRich(),
             SizedBox(height: context.lowValue), // height * 0.01;
             _descriptionText(context),
             SizedBox(height: context.lowValue),

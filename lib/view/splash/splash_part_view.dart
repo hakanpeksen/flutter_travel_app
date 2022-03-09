@@ -1,22 +1,11 @@
 part of 'splash_view.dart';
 
-TextStyle? _headerText1Style(BuildContext context) {
-  return context.textTheme.headline4?.copyWith(
-    fontSize: 30,
-    color: context.colorScheme.primary,
-  );
-}
-
-TextStyle _headerText2Style(BuildContext context) {
-  return TextStyle(fontWeight: FontWeight.bold, color: context.colorScheme.primary);
-}
-
-CustomTextRich _buildTextRich(BuildContext context) {
+CustomTextRich _buildTextRich() {
   return CustomTextRich(
     textSpan1: TextConstant.instance.headerText1,
-    textSpan1Style: _headerText1Style(context),
+    textSpan1Style: AppTextStyles.headline4.copyWith(fontWeight: FontWeight.normal),
     textSpan2: TextConstant.instance.headerText2,
-    textSpan2Style: _headerText2Style(context),
+    textSpan2Style: AppTextStyles.headline4,
     textAlign: TextAlign.center,
   );
 }
