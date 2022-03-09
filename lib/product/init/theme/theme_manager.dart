@@ -15,11 +15,13 @@ class AppThemeLight {
 
   ThemeData get themeDataLight => ThemeData(
         brightness: Brightness.light,
-        fontFamily: fontFamily,
-        textTheme: ThemeData.light().textTheme.copyWith(
+        textTheme: ThemeData.light()
+            .textTheme
+            .copyWith(
               headline4: AppTextStyles.headline4,
               headline6: AppTextStyles.headline6,
-            ),
+            )
+            .apply(fontFamily: fontFamily),
         //textTheme: ThemeData.light().textTheme.apply(fontFamily: fontFamily),
         colorScheme: ThemeData.light().colorScheme.copyWith(
               primary: AppColors.emperor,
