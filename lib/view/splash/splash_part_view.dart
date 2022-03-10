@@ -14,14 +14,3 @@ Text _descriptionText(BuildContext context) {
   return Text(TextConstant.instance.description,
       style: context.textTheme.bodyText2?.copyWith(color: context.colorScheme.surface));
 }
-
-ElevatedButton buildElevatedButton(BuildContext context) {
-  return ElevatedButton(
-      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(context.colorScheme.secondary)),
-      onPressed: () async {
-        await SharedManager.instace.setBoolValue(SharedKeys.showSplashView, true);
-        Navigator.of(context)
-            .pushReplacement(MaterialPageRoute(builder: (context) => const HomeView()));
-      },
-      child: Text(TextConstant.instance.startedButtonText, style: context.textTheme.subtitle1));
-}

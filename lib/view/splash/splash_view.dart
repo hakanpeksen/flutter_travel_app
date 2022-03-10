@@ -3,35 +3,32 @@ import 'package:kartal/kartal.dart';
 import 'package:provider/provider.dart';
 
 import '../../product/constants/text/text_constant.dart';
-import '../../product/init/shared_manager.dart';
 import '../../product/init/theme/text_style.dart';
 import '../../product/widgets/custom_textrich.dart';
+import '../../product/widgets/get_start_button.dart';
 import '../../product/widgets/splash_image.dart';
 import '../../product/widgets/tab_indicator.dart';
-import '../home/home_view.dart';
 import 'splash_context.dart';
 
 part './splash_part_view.dart';
 
-class SplashView extends StatefulWidget {
+class SplashView extends StatelessWidget {
   const SplashView({Key? key}) : super(key: key);
 
   @override
-  State<SplashView> createState() => _SplashViewState();
-}
-
-class _SplashViewState extends State<SplashView> {
-  @override
   Widget build(BuildContext context) {
+    return _buildScaffoldView(context);
+  }
+
+  Scaffold _buildScaffoldView(BuildContext context) {
     return Scaffold(
         body: Column(
-      children: [Expanded(child: buildPageView())],
+      children: [Expanded(child: _buildPageView(context))],
     ));
   }
 
-  PageView buildPageView() {
+  PageView _buildPageView(BuildContext context) {
     final model = context.read<SplashContext>();
-
     return PageView.builder(
       onPageChanged: (value) {
         model.incrementSelectedPage(value);
@@ -69,7 +66,7 @@ class _SplashViewState extends State<SplashView> {
         return model.isLastPage;
       },
       builder: (context, value, child) {
-        return value ? Center(child: buildElevatedButton(context)) : const SizedBox();
+        return value ? const Center(child: GetStartButton()) : const SizedBox();
       },
     );
   }

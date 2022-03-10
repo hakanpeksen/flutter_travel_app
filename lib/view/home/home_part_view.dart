@@ -1,5 +1,6 @@
 part of 'home_view.dart';
 
+// Three
 Row _buildHeaderRow(BuildContext context) {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -12,6 +13,7 @@ Row _buildHeaderRow(BuildContext context) {
   );
 }
 
+// Four
 CustomTextRich _buildTextRich(BuildContext context) {
   return CustomTextRich(
     textSpan1: TextConstant.instance.homeText1,
@@ -21,14 +23,44 @@ CustomTextRich _buildTextRich(BuildContext context) {
   );
 }
 
+// Five
+Container _buildContainerInput(BuildContext context) {
+  return Container(
+      decoration: BoxDecoration(boxShadow: [TextShadowCustom(context)]),
+      child: SearchInputField(data: Theme.of(context)));
+}
+
+// Six
+Text get _buildTextSaved => Text(TextConstant.instance.savedText, style: AppTextStyles.headline6);
+Text get _buildTextTravel => Text(TextConstant.instance.travelText, style: AppTextStyles.headline6);
+
+// Seven
+SizedBox _buildGridViewSizedBox(BuildContext context) {
+  return SizedBox(
+    height: context.dynamicHeight(0.37),
+    child: GridView.count(
+      padding: const CustomPadding.mediumTop(), // super.only(top: 20);
+      childAspectRatio: 1.490,
+      physics: const NeverScrollableScrollPhysics(),
+      crossAxisCount: crossAxisCount, // yatayda gözüken adet
+      crossAxisSpacing: crossAxisSpacing,
+      mainAxisSpacing: mainAxisSpacing,
+
+      children: [
+        for (var country in PngConstant.instance.countries) Image.asset(country.toImagePng)
+      ],
+    ),
+  );
+}
+
+// Eight
 Row _buildBottomRow(BuildContext context) {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: [
       Container(
-          width: context.highValue, //  height * 0.1;
-          height: context.highValue,
+          height: context.highValue, //  //  height * 0.1;
           child: Image.asset(PngConstant.instance.add),
           decoration: CustomDecoration(context)),
       Image.asset(PngConstant.instance.ashok),
@@ -36,13 +68,3 @@ Row _buildBottomRow(BuildContext context) {
     ],
   );
 }
-
-Container _buildContainerInput(BuildContext context) {
-  return Container(
-      decoration: BoxDecoration(boxShadow: [TextShadowCustom(context)]),
-      child: SearchInputField(data: Theme.of(context)));
-}
-
-Text get _buildTextSaved => Text(TextConstant.instance.savedText, style: AppTextStyles.headline6);
-
-Text get _buildTextTravel => Text(TextConstant.instance.travelText, style: AppTextStyles.headline6);
