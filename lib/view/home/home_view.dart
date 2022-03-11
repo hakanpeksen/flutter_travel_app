@@ -23,28 +23,12 @@ class HomeView extends StatelessWidget {
 
   Scaffold _buildScaffoldView(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Column(
-        children: [
-          buildDecorationContainer(context), // Header, SearchInput
-          Padding(
-            padding: const CustomPadding.normalHorizontal(), // horizontal: 30
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: context.mediumValue), // height * 0.04;
-                _buildTextSaved, // Saved Text
-                _buildGridViewSizedBox(context),
-                SizedBox(height: context.lowValue), // height * 0.01;
-                _buildTextTravel, //  // Travel Text
-                SizedBox(height: context.normalValue), // height * 0.02;
-                _buildBottomRow(context),
-              ],
-            ),
-          ),
-        ],
-      ),
-    ));
+        body: ListView(children: [
+      buildDecorationContainer(context), // Header, SearchInput
+      Padding(
+          padding: const CustomPadding.normalHorizontal(), // horizontal: 30
+          child: buildColumnBody(context))
+    ]));
   }
 
   // One
@@ -52,11 +36,11 @@ class HomeView extends StatelessWidget {
     return Container(
         height: context.dynamicHeight(0.4),
         decoration: CustomDecoration.onlyLeftAndRight(context),
-        child: buildPadding(context));
+        child: _buildHeaderItems(context));
   }
 
   // Two
-  Padding buildPadding(BuildContext context) {
+  Padding _buildHeaderItems(BuildContext context) {
     return Padding(
       padding: const CustomPadding.onlyLTRB(),
       child: Column(
@@ -66,10 +50,24 @@ class HomeView extends StatelessWidget {
           SizedBox(height: context.mediumValue), // height * 0.04;
           _buildTextRich(context),
           SizedBox(height: context.mediumValue),
-          _buildContainerInput(context),
+          _buildSearchInput(context),
           SizedBox(height: context.mediumValue),
         ],
       ),
+    );
+  }
+
+  Column buildColumnBody(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: context.mediumValue), // height * 0.04;
+        _buildTextSaved, // Saved Text
+        SizedBox(height: context.dynamicHeight(0.37), child: _buildGridViewSizedBox(context)),
+        _buildTextTravel, //  // Travel Text
+        SizedBox(height: context.normalValue), // height * 0.02;
+        _buildBottomItems(context),
+      ],
     );
   }
 }

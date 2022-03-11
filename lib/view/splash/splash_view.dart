@@ -35,24 +35,23 @@ class SplashView extends StatelessWidget {
       },
       itemCount: SplashModels.splashItems.length,
       itemBuilder: (context, index) {
-        return Stack(children: [
-          Center(
-              child: Column(children: [
+        return Stack(alignment: Alignment.center, children: [
+          SplashImage(model: SplashModels.splashItems[index]),
+          _buildElevatedButtonSelector(),
+          Column(children: [
             SizedBox(height: context.dynamicHeight(0.09)),
             _buildTextRich(),
-            SizedBox(height: context.lowValue), // height * 0.01;
+            context.emptySizedHeightBoxLow, // height * 0.01;
             _descriptionText(context),
-            SizedBox(height: context.lowValue),
-            buildTabSelector()
-          ])),
-          SplashImage(model: SplashModels.splashItems[index]),
-          buidlElevatedButtonSelector(),
+            context.emptySizedHeightBoxLow,
+            _buildTabSelector()
+          ]),
         ]);
       },
     );
   }
 
-  Selector<SplashContext, int> buildTabSelector() {
+  Selector<SplashContext, int> _buildTabSelector() {
     return Selector<SplashContext, int>(selector: (context, _model) {
       return _model.selectedIndex;
     }, builder: (context, value, child) {
@@ -60,7 +59,7 @@ class SplashView extends StatelessWidget {
     });
   }
 
-  Selector<SplashContext, bool> buidlElevatedButtonSelector() {
+  Selector<SplashContext, bool> _buildElevatedButtonSelector() {
     return Selector<SplashContext, bool>(
       selector: (context, model) {
         return model.isLastPage;

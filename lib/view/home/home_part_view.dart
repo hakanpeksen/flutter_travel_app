@@ -24,7 +24,7 @@ CustomTextRich _buildTextRich(BuildContext context) {
 }
 
 // Five
-Container _buildContainerInput(BuildContext context) {
+Container _buildSearchInput(BuildContext context) {
   return Container(
       decoration: BoxDecoration(boxShadow: [TextShadowCustom(context)]),
       child: SearchInputField(data: Theme.of(context)));
@@ -35,26 +35,21 @@ Text get _buildTextSaved => Text(TextConstant.instance.savedText, style: AppText
 Text get _buildTextTravel => Text(TextConstant.instance.travelText, style: AppTextStyles.headline6);
 
 // Seven
-SizedBox _buildGridViewSizedBox(BuildContext context) {
-  return SizedBox(
-    height: context.dynamicHeight(0.37),
-    child: GridView.count(
-      padding: const CustomPadding.mediumTop(), // super.only(top: 20);
-      childAspectRatio: 1.490,
-      physics: const NeverScrollableScrollPhysics(),
-      crossAxisCount: crossAxisCount, // yatayda gözüken adet
-      crossAxisSpacing: crossAxisSpacing,
-      mainAxisSpacing: mainAxisSpacing,
+GridView _buildGridViewSizedBox(BuildContext context) {
+  return GridView.count(
+    padding: const CustomPadding.mediumTop(), // super.only(top: 20);
+    childAspectRatio: 1.490,
+    physics: const NeverScrollableScrollPhysics(),
+    crossAxisCount: crossAxisCount, // yatayda gözüken adet
+    crossAxisSpacing: crossAxisSpacing,
+    mainAxisSpacing: mainAxisSpacing,
 
-      children: [
-        for (var country in PngConstant.instance.countries) Image.asset(country.toImagePng)
-      ],
-    ),
+    children: [for (var country in PngConstant.instance.countries) Image.asset(country.toImagePng)],
   );
 }
 
 // Eight
-Row _buildBottomRow(BuildContext context) {
+Row _buildBottomItems(BuildContext context) {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     mainAxisAlignment: MainAxisAlignment.spaceAround,
